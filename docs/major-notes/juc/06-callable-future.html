@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Callable接口 | 江流</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+	  var _hmt = _hmt || [];
+	  (function() {
+	    var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?d53065bd59576478808301d9b305d57a";
+	    var s = document.getElementsByTagName("script")[0]; 
+	    s.parentNode.insertBefore(hm, s);
+	  })();
+	  </script>        
+	  </script>
+    <meta name="description" content="我的知识存储空间，不大不小刚刚好！">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.f7444686.css" as="style"><link rel="preload" href="/assets/js/app.371ed010.js" as="script"><link rel="preload" href="/assets/js/3.fe7e7b6d.js" as="script"><link rel="preload" href="/assets/js/1.adb5634c.js" as="script"><link rel="preload" href="/assets/js/64.d6d2548e.js" as="script"><link rel="prefetch" href="/assets/js/10.1f1951c3.js"><link rel="prefetch" href="/assets/js/100.61abc83e.js"><link rel="prefetch" href="/assets/js/101.36b1a9cd.js"><link rel="prefetch" href="/assets/js/102.ab6aaef1.js"><link rel="prefetch" href="/assets/js/103.56b65027.js"><link rel="prefetch" href="/assets/js/104.10a9920d.js"><link rel="prefetch" href="/assets/js/105.2af1fce1.js"><link rel="prefetch" href="/assets/js/106.89d909fa.js"><link rel="prefetch" href="/assets/js/107.8a051ba9.js"><link rel="prefetch" href="/assets/js/108.8d32e2bb.js"><link rel="prefetch" href="/assets/js/109.98a9c733.js"><link rel="prefetch" href="/assets/js/11.4f1a38c2.js"><link rel="prefetch" href="/assets/js/110.cb2819bf.js"><link rel="prefetch" href="/assets/js/111.3763e438.js"><link rel="prefetch" href="/assets/js/112.437502fc.js"><link rel="prefetch" href="/assets/js/113.c84b80e9.js"><link rel="prefetch" href="/assets/js/114.e8265ab7.js"><link rel="prefetch" href="/assets/js/115.5950f39b.js"><link rel="prefetch" href="/assets/js/116.7082589d.js"><link rel="prefetch" href="/assets/js/117.9ab33002.js"><link rel="prefetch" href="/assets/js/118.b03051ef.js"><link rel="prefetch" href="/assets/js/119.31fe4216.js"><link rel="prefetch" href="/assets/js/12.397d3f87.js"><link rel="prefetch" href="/assets/js/120.4d52fd08.js"><link rel="prefetch" href="/assets/js/121.024a68dc.js"><link rel="prefetch" href="/assets/js/122.75cd9e9a.js"><link rel="prefetch" href="/assets/js/123.3060f162.js"><link rel="prefetch" href="/assets/js/124.b65e3f9b.js"><link rel="prefetch" href="/assets/js/125.87d06856.js"><link rel="prefetch" href="/assets/js/126.23d0d6ec.js"><link rel="prefetch" href="/assets/js/127.1ff7063e.js"><link rel="prefetch" href="/assets/js/128.e7a78683.js"><link rel="prefetch" href="/assets/js/129.3a378a54.js"><link rel="prefetch" href="/assets/js/13.d1346059.js"><link rel="prefetch" href="/assets/js/130.3820ccc0.js"><link rel="prefetch" href="/assets/js/14.961feb61.js"><link rel="prefetch" href="/assets/js/15.61355499.js"><link rel="prefetch" href="/assets/js/16.6759c278.js"><link rel="prefetch" href="/assets/js/17.39315298.js"><link rel="prefetch" href="/assets/js/18.9995ddc3.js"><link rel="prefetch" href="/assets/js/19.e7007f1f.js"><link rel="prefetch" href="/assets/js/20.8284a0ff.js"><link rel="prefetch" href="/assets/js/21.42efcf40.js"><link rel="prefetch" href="/assets/js/22.ce83188a.js"><link rel="prefetch" href="/assets/js/23.125b374b.js"><link rel="prefetch" href="/assets/js/24.9a24b2f6.js"><link rel="prefetch" href="/assets/js/25.61d7e926.js"><link rel="prefetch" href="/assets/js/26.4c271fce.js"><link rel="prefetch" href="/assets/js/27.08314644.js"><link rel="prefetch" href="/assets/js/28.44a30857.js"><link rel="prefetch" href="/assets/js/29.4b86327a.js"><link rel="prefetch" href="/assets/js/30.284e1438.js"><link rel="prefetch" href="/assets/js/31.c7fb218e.js"><link rel="prefetch" href="/assets/js/32.9591edea.js"><link rel="prefetch" href="/assets/js/33.52d0ee09.js"><link rel="prefetch" href="/assets/js/34.24dce9bc.js"><link rel="prefetch" href="/assets/js/35.e9e59a19.js"><link rel="prefetch" href="/assets/js/36.470d3b70.js"><link rel="prefetch" href="/assets/js/37.f43d4d57.js"><link rel="prefetch" href="/assets/js/38.bb14e7a9.js"><link rel="prefetch" href="/assets/js/39.4238fcd3.js"><link rel="prefetch" href="/assets/js/4.10111819.js"><link rel="prefetch" href="/assets/js/40.eb5830d8.js"><link rel="prefetch" href="/assets/js/41.f2de0dd7.js"><link rel="prefetch" href="/assets/js/42.ee6bc670.js"><link rel="prefetch" href="/assets/js/43.aeb80fc2.js"><link rel="prefetch" href="/assets/js/44.3dcf73d7.js"><link rel="prefetch" href="/assets/js/45.f60dd2b7.js"><link rel="prefetch" href="/assets/js/46.3ffd9a49.js"><link rel="prefetch" href="/assets/js/47.0629cfd8.js"><link rel="prefetch" href="/assets/js/48.4064d363.js"><link rel="prefetch" href="/assets/js/49.e5cd2868.js"><link rel="prefetch" href="/assets/js/5.bbaa5544.js"><link rel="prefetch" href="/assets/js/50.e1524d44.js"><link rel="prefetch" href="/assets/js/51.ef5d60b4.js"><link rel="prefetch" href="/assets/js/52.9e15bbc1.js"><link rel="prefetch" href="/assets/js/53.9e53a9b3.js"><link rel="prefetch" href="/assets/js/54.bda58726.js"><link rel="prefetch" href="/assets/js/55.cdc29215.js"><link rel="prefetch" href="/assets/js/56.3f0607d3.js"><link rel="prefetch" href="/assets/js/57.b45ba0fb.js"><link rel="prefetch" href="/assets/js/58.12450427.js"><link rel="prefetch" href="/assets/js/59.33096dcc.js"><link rel="prefetch" href="/assets/js/6.8df5fb44.js"><link rel="prefetch" href="/assets/js/60.98645e3a.js"><link rel="prefetch" href="/assets/js/61.413d9151.js"><link rel="prefetch" href="/assets/js/62.cc3b9f5a.js"><link rel="prefetch" href="/assets/js/63.05784f29.js"><link rel="prefetch" href="/assets/js/65.dfa3ba68.js"><link rel="prefetch" href="/assets/js/66.bb4f5fde.js"><link rel="prefetch" href="/assets/js/67.2c282a4f.js"><link rel="prefetch" href="/assets/js/68.ce435a87.js"><link rel="prefetch" href="/assets/js/69.e439f6e2.js"><link rel="prefetch" href="/assets/js/7.751d2655.js"><link rel="prefetch" href="/assets/js/70.270cc6b6.js"><link rel="prefetch" href="/assets/js/71.ad1e4a0b.js"><link rel="prefetch" href="/assets/js/72.0adf2b53.js"><link rel="prefetch" href="/assets/js/73.72e019b5.js"><link rel="prefetch" href="/assets/js/74.a4eb5a17.js"><link rel="prefetch" href="/assets/js/75.6412ff6f.js"><link rel="prefetch" href="/assets/js/76.7f462fc1.js"><link rel="prefetch" href="/assets/js/77.16502231.js"><link rel="prefetch" href="/assets/js/78.3082b00c.js"><link rel="prefetch" href="/assets/js/79.4f375500.js"><link rel="prefetch" href="/assets/js/8.6c3fab20.js"><link rel="prefetch" href="/assets/js/80.0f2472d6.js"><link rel="prefetch" href="/assets/js/81.136b6c89.js"><link rel="prefetch" href="/assets/js/82.6f5b7de7.js"><link rel="prefetch" href="/assets/js/83.0eb8579b.js"><link rel="prefetch" href="/assets/js/84.b50a036d.js"><link rel="prefetch" href="/assets/js/85.e7b43c1a.js"><link rel="prefetch" href="/assets/js/86.0cbd7e7b.js"><link rel="prefetch" href="/assets/js/87.647fd8a9.js"><link rel="prefetch" href="/assets/js/88.be268039.js"><link rel="prefetch" href="/assets/js/89.2c0b397f.js"><link rel="prefetch" href="/assets/js/9.ace3bd0d.js"><link rel="prefetch" href="/assets/js/90.fb93a187.js"><link rel="prefetch" href="/assets/js/91.45160178.js"><link rel="prefetch" href="/assets/js/92.4e47d015.js"><link rel="prefetch" href="/assets/js/93.2f9bae72.js"><link rel="prefetch" href="/assets/js/94.c68d9319.js"><link rel="prefetch" href="/assets/js/95.a6932cad.js"><link rel="prefetch" href="/assets/js/96.dea31892.js"><link rel="prefetch" href="/assets/js/97.e8c73484.js"><link rel="prefetch" href="/assets/js/98.bf38dbf7.js"><link rel="prefetch" href="/assets/js/99.edd450af.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f7444686.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-6f8f7dda><div data-v-6f8f7dda><div class="password-shadow password-wrapper-out" style="display:none;" data-v-f68096de data-v-6f8f7dda data-v-6f8f7dda><h3 class="title" data-v-f68096de>江流</h3> <p class="description" data-v-f68096de>我的知识存储空间，不大不小刚刚好！</p> <label id="box" class="inputBox" data-v-f68096de><input type="password" value="" data-v-f68096de> <span data-v-f68096de>Konck! Knock!</span> <button data-v-f68096de>OK</button></label> <div class="footer" data-v-f68096de><span data-v-f68096de><i class="iconfont reco-theme" data-v-f68096de></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-f68096de>vuePress-theme-reco</a></span> <span data-v-f68096de><i class="iconfont reco-copyright" data-v-f68096de></i> <a data-v-f68096de><span data-v-f68096de>江流</span>
+          
+        <span data-v-f68096de>2018 - </span>
+        2023
+      </a></span></div></div> <div class="hide" data-v-6f8f7dda><header class="navbar" data-v-6f8f7dda><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="江流" class="logo"> <span class="site-name">江流</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/复盘/" class="nav-link"><i class="undefined"></i>
+  复盘
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习总结/" class="nav-link"><i class="undefined"></i>
+  学习总结
+</a></li><li class="dropdown-item"><!----> <a href="/categories/踩坑/" class="nav-link"><i class="undefined"></i>
+  踩坑
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/" class="nav-link"><i class="undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java基础/" class="nav-link"><i class="undefined"></i>
+  Java基础
+</a></li><li class="dropdown-item"><!----> <a href="/categories/高并发编程/" class="nav-link"><i class="undefined"></i>
+  高并发编程
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java框架/" class="nav-link"><i class="undefined"></i>
+  Java框架
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习笔记/" class="nav-link"><i class="undefined"></i>
+  学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/框架学习/" class="nav-link"><i class="undefined"></i>
+  框架学习
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java项目/" class="nav-link"><i class="undefined"></i>
+  Java项目
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-note"></i>
+      学习笔记
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/major-notes/java/" class="nav-link"><i class="undefined"></i>
+  Java笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/juc/" class="nav-link router-link-active"><i class="undefined"></i>
+  JUC学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/jvm.html" class="nav-link"><i class="undefined"></i>
+  JVM核心知识
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/vue.html" class="nav-link"><i class="undefined"></i>
+  Vue入门笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/linux/" class="nav-link"><i class="undefined"></i>
+  Linux笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/redis/" class="nav-link"><i class="undefined"></i>
+  Redis学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/springcloud/" class="nav-link"><i class="undefined"></i>
+  SpringCloud笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/spring/" class="nav-link"><i class="undefined"></i>
+  Spring学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/shiro.html" class="nav-link"><i class="undefined"></i>
+  Shiro学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/android-notes/" class="nav-link"><i class="undefined"></i>
+  Android学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/project-notes/" class="nav-link"><i class="undefined"></i>
+  项目笔记
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/collections/" class="nav-link"><i class="iconfont reco-collection"></i>
+  收藏夹
+</a></div><div class="nav-item"><a href="/docs/life-logs/" class="nav-link"><i class="iconfont reco-camera"></i>
+  生活日志
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-browse"></i>
+      常用网站
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://www.cxysite.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  程序员导航
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-person"></i>
+      私藏博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://docker.easydoc.net" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  快速入门docker
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系方式
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-gitee"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-6f8f7dda></div> <aside class="sidebar" data-v-6f8f7dda><div class="personal-info-wrapper" data-v-cc06b9e8 data-v-6f8f7dda><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-cc06b9e8> <h3 class="name" data-v-cc06b9e8>
+    江流
+  </h3> <div class="num" data-v-cc06b9e8><div data-v-cc06b9e8><h3 data-v-cc06b9e8>104</h3> <h6 data-v-cc06b9e8>Articles</h6></div> <div data-v-cc06b9e8><h3 data-v-cc06b9e8>21</h3> <h6 data-v-cc06b9e8>Tags</h6></div></div> <ul class="social-links" data-v-cc06b9e8></ul> <hr data-v-cc06b9e8></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/复盘/" class="nav-link"><i class="undefined"></i>
+  复盘
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习总结/" class="nav-link"><i class="undefined"></i>
+  学习总结
+</a></li><li class="dropdown-item"><!----> <a href="/categories/踩坑/" class="nav-link"><i class="undefined"></i>
+  踩坑
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/" class="nav-link"><i class="undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java基础/" class="nav-link"><i class="undefined"></i>
+  Java基础
+</a></li><li class="dropdown-item"><!----> <a href="/categories/高并发编程/" class="nav-link"><i class="undefined"></i>
+  高并发编程
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java框架/" class="nav-link"><i class="undefined"></i>
+  Java框架
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习笔记/" class="nav-link"><i class="undefined"></i>
+  学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/框架学习/" class="nav-link"><i class="undefined"></i>
+  框架学习
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java项目/" class="nav-link"><i class="undefined"></i>
+  Java项目
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-note"></i>
+      学习笔记
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/major-notes/java/" class="nav-link"><i class="undefined"></i>
+  Java笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/juc/" class="nav-link router-link-active"><i class="undefined"></i>
+  JUC学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/jvm.html" class="nav-link"><i class="undefined"></i>
+  JVM核心知识
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/vue.html" class="nav-link"><i class="undefined"></i>
+  Vue入门笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/linux/" class="nav-link"><i class="undefined"></i>
+  Linux笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/redis/" class="nav-link"><i class="undefined"></i>
+  Redis学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/springcloud/" class="nav-link"><i class="undefined"></i>
+  SpringCloud笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/spring/" class="nav-link"><i class="undefined"></i>
+  Spring学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/shiro.html" class="nav-link"><i class="undefined"></i>
+  Shiro学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/android-notes/" class="nav-link"><i class="undefined"></i>
+  Android学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/project-notes/" class="nav-link"><i class="undefined"></i>
+  项目笔记
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/collections/" class="nav-link"><i class="iconfont reco-collection"></i>
+  收藏夹
+</a></div><div class="nav-item"><a href="/docs/life-logs/" class="nav-link"><i class="iconfont reco-camera"></i>
+  生活日志
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-browse"></i>
+      常用网站
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://www.cxysite.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  程序员导航
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-person"></i>
+      私藏博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://docker.easydoc.net" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  快速入门docker
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系方式
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-gitee"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Algorithm</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Juc</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/major-notes/juc/01-juc-brief.html" class="sidebar-link">JUC概述</a></li><li><a href="/docs/major-notes/juc/02-lock-interface.html" class="sidebar-link">Lock接口</a></li><li><a href="/docs/major-notes/juc/03-process-notify.html" class="sidebar-link">进程通信</a></li><li><a href="/docs/major-notes/juc/05-thread-lock.html" class="sidebar-link">多线程锁</a></li><li><a href="/docs/major-notes/juc/06-callable-future.html" aria-current="page" class="active sidebar-link">Callable接口</a></li><li><a href="/docs/major-notes/juc/07-auxiliary-class.html" class="sidebar-link">三大辅助类</a></li><li><a href="/docs/major-notes/juc/08-reentrantreadwritekock.html" class="sidebar-link">读写锁</a></li><li><a href="/docs/major-notes/juc/09-blockingqueue.html" class="sidebar-link">阻塞队列</a></li><li><a href="/docs/major-notes/juc/10-threadpool.html" class="sidebar-link">线程池</a></li><li><a href="/docs/major-notes/juc/11-forkjoin.html" class="sidebar-link">Fork和Join</a></li><li><a href="/docs/major-notes/juc/12-completablefuture.html" class="sidebar-link">CompletableFuture</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SpringBoot</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Springcloud</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-f68096de data-v-6f8f7dda><h3 class="title" data-v-f68096de>Callable接口</h3> <!----> <label id="box" class="inputBox" data-v-f68096de><input type="password" value="" data-v-f68096de> <span data-v-f68096de>Konck! Knock!</span> <button data-v-f68096de>OK</button></label> <div class="footer" data-v-f68096de><span data-v-f68096de><i class="iconfont reco-theme" data-v-f68096de></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-f68096de>vuePress-theme-reco</a></span> <span data-v-f68096de><i class="iconfont reco-copyright" data-v-f68096de></i> <a data-v-f68096de><span data-v-f68096de>江流</span>
+          
+        <span data-v-f68096de>2018 - </span>
+        2023
+      </a></span></div></div> <div data-v-6f8f7dda><div data-v-6f8f7dda><main class="page" style="padding-right:0;"><section style="display:;"><div class="page-title"><h1 class="title">Callable接口</h1> <div data-v-1e62957f><i class="iconfont reco-account" data-v-1e62957f><span data-v-1e62957f>江流</span></i> <i class="iconfont reco-date" data-v-1e62957f><span data-v-1e62957f>11/19/2021</span></i> <!----> <i class="tags iconfont reco-tag" data-v-1e62957f><span class="tag-item" data-v-1e62957f>JUC</span></i></div></div> <div class="theme-reco-content content__default"><h4 id="callable-接口"><a href="#callable-接口" class="header-anchor">#</a> Callable 接口</h4> <blockquote><p>Callable 接口的特点如下(重点)</p> <ul><li>为了实现 Runnable，需要实现不返回任何内容的 run() 方法，而对于 Callable，需要实现在完成时返回结果的 call() 方法。</li> <li>call() 方法可以引发异常，而 run() 则不能。</li> <li>为实现 Callable 而必须重写 call() 方法。</li> <li>不能直接替换 Runnable，因为 Thread 类的构造方法根本没有 Callable。</li></ul> <p>Runable接口和Callable接口创建线程比较</p> <ul><li>是否有返回值 Callable接口有返回值，Runable 接口无返回值。</li> <li>是否触发异常 Callable接口会抛出异常，Runable 接口不抛出异常。</li> <li>实现方法名称不同，Callable接口实现call()方法，Runable 接口实现 run() 方法。</li></ul> <p>找一个类，即和 Runable 有关系，又和 Callable 有关系。</p> <ul><li>Runable 接口有实现类 FutureTask。</li> <li>FutureTask 构造可以传递 Callable。</li></ul></blockquote> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">//创建新类MyThread实现runnable接口</span>
+<span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//新类MyThread2实现callable接口</span>
+<span class="token keyword">class</span> <span class="token class-name">MyThread2</span> <span class="token keyword">implements</span> <span class="token class-name">Callable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    	<span class="token keyword">return</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h4 id="future-接口"><a href="#future-接口" class="header-anchor">#</a> Future 接口</h4> <blockquote><p>当 call() 方法完成时，结果必须存储在主线程已知的对象中，以便主线程可以知道该线程返回的结果。为此，可以使用 Future 对象。将 Future 视为保存结果的对象–它可能暂时不保存结果，但将来会保存（一旦 Callable 返回）。Future 基本上是主线程可以跟踪进度以及其他线程的结果的一种方式。要实现此接口，必须重写 5 种方法，这里列出了重要的方法,如下:</p> <ul><li><p><strong>public boolean cancel (boolean mayInterrupt)：用于停止任务。</strong></p> <p>如果尚未启动，它将停止任务。如果已启动，则仅在 mayInterrupt 为 true时才会中断任务。</p></li> <li><p><strong>public Object get() 抛出 InterruptedException</strong></p> <p>ExecutionException：用于获取任务的结果。  如果任务完成，它将立即返回结果，否则将等待任务完成，然后返回结果。</p></li> <li><p><strong>public boolean isDone()：如果任务完成，则返回 true，否则返回 false</strong></p> <p>可以看到 Callable 和 Future 做两件事—— Callable 与 Runnable 类似，因为它封装了要在另一个线程上运行的任务，而 Future 用于存储从另一个线程获得的结果。实际上，Future 也可以与 Runnable 一起使用。</p> <p>要创建线程，需要 Runnable。为了获得结果，需要 Future。</p></li></ul></blockquote> <h4 id="futuretask"><a href="#futuretask" class="header-anchor">#</a> FutureTask</h4> <blockquote><p>Java 库有具体的 FutureTask 类型，该类型实现了 Runnable 和 Future，并方便地将两种功能组合在一起。 可以通过为其构造函数提供 Callable 来创建 FutureTask。然后，将 FutureTask 对象提供给 Thread 的构造函数以创建 Thread 对象。因此，间接地使用 Callable 创建线程。</p> <p><strong>核心原理:(重点)</strong>
+在主线程中需要执行比较耗时的操作时，但又不想阻塞主线程时，可以把这些作业交给 Future 对象在后台完成。</p> <ul><li>当主线程将来需要时，就可以通过 Future 对象获得后台作业的计算结果或者执行状态。</li> <li>一般 FutureTask 多用于耗时的计算，主线程可以在完成自己的任务后，再去获取结果。</li> <li>仅在计算完成时才能检索结果；如果计算尚未完成，则阻塞 get() 方法。</li> <li>一旦计算完成，就不能再重新开始或取消计算。</li> <li>get() 方法而获取结果只有在计算完成时获取，否则会一直阻塞直到任务转入完成状态，然后会返回结果或者抛出异常。</li> <li>get() 只计算一次，因此 get() 方法放到最后。</li></ul></blockquote> <h4 id="使用-callable-和-和-future"><a href="#使用-callable-和-和-future" class="header-anchor">#</a> 使用 Callable 和 和 Future</h4> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token comment">/**
+ * 
+ * 找一个类，即和Runable有关系，又和Callable有关系
+ *
+ *   Runable接口有实现类FutureTask
+ *
+ *   FutureTask构造可以传递Callable
+ * 
+ */</span>
+
+
+<span class="token comment">//实现Runnable接口</span>
+<span class="token keyword">class</span> <span class="token class-name">MyThread01</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//实现Callable接口</span>
+<span class="token keyword">class</span> <span class="token class-name">MyThread02</span> <span class="token keyword">implements</span> <span class="token class-name">Callable</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot; come in callable&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ExecutionException</span><span class="token punctuation">,</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//Runnable接口创建线程</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyThread01</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&quot;AA&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//Callable接口创建线程 报错</span>
+        <span class="token comment">//new Thread(new MyThread02()).start();</span>
+
+        <span class="token comment">//为构造函数提供 Callable 来创建FutureTask</span>
+        <span class="token class-name">FutureTask</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> futureTask1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FutureTask</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyThread02</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//lambda表达式</span>
+        <span class="token class-name">FutureTask</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> futureTask2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FutureTask</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot; come in callable&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建一个线程</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>futureTask1<span class="token punctuation">,</span><span class="token string">&quot;mary&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>futureTask2<span class="token punctuation">,</span><span class="token string">&quot;lucy&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">/*while (!futureTask2.isDone()){
+            System.out.println(&quot;wait...&quot;);
+        }*/</span>
+
+        <span class="token comment">//调用FutureTask的get方法</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>futureTask1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>futureTask2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span> <span class="token string">&quot; come over&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//FutureTask原理</span>
+        <span class="token comment">/**
+         * 1. 老师上课，口渴了，买票不合适，讲课线程继续，单开线程找班长去买水，把水买回来后，需要时直接get
+         * 2. 4个同学，1同学1+2...+5 , 2同学 10+11+12...+50 3同学 60+61+62 , 4同学 100+200
+         *      第2个同学计算量较大
+         *      FutureTask单开线程给2同学计算，先汇总1 3 4，最后等2同学计算完成后，统一汇总
+         * 3. 考试，先做会的题目，最后看不会做的题目
+         */</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br></div></div><h4 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h4> <p><img src="http://images.xbnote.top/images/20211118165012.png" alt="image-20211118165012208"></p></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/docs/major-notes/juc/05-thread-lock.html" class="prev">
+          多线程锁
+        </a></span> <span class="next"><a href="/docs/major-notes/juc/07-auxiliary-class.html">
+          三大辅助类
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:0;" data-v-6986a797 data-v-6f8f7dda></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/assets/js/app.371ed010.js" defer></script><script src="/assets/js/3.fe7e7b6d.js" defer></script><script src="/assets/js/1.adb5634c.js" defer></script><script src="/assets/js/64.d6d2548e.js" defer></script>
+  </body>
+</html>

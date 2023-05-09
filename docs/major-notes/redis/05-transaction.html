@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis事务 | 江流</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <script>
+	  var _hmt = _hmt || [];
+	  (function() {
+	    var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?d53065bd59576478808301d9b305d57a";
+	    var s = document.getElementsByTagName("script")[0]; 
+	    s.parentNode.insertBefore(hm, s);
+	  })();
+	  </script>        
+	  </script>
+    <meta name="description" content="我的知识存储空间，不大不小刚刚好！">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.f7444686.css" as="style"><link rel="preload" href="/assets/js/app.371ed010.js" as="script"><link rel="preload" href="/assets/js/3.fe7e7b6d.js" as="script"><link rel="preload" href="/assets/js/1.adb5634c.js" as="script"><link rel="preload" href="/assets/js/91.45160178.js" as="script"><link rel="prefetch" href="/assets/js/10.1f1951c3.js"><link rel="prefetch" href="/assets/js/100.61abc83e.js"><link rel="prefetch" href="/assets/js/101.36b1a9cd.js"><link rel="prefetch" href="/assets/js/102.ab6aaef1.js"><link rel="prefetch" href="/assets/js/103.56b65027.js"><link rel="prefetch" href="/assets/js/104.10a9920d.js"><link rel="prefetch" href="/assets/js/105.2af1fce1.js"><link rel="prefetch" href="/assets/js/106.89d909fa.js"><link rel="prefetch" href="/assets/js/107.8a051ba9.js"><link rel="prefetch" href="/assets/js/108.8d32e2bb.js"><link rel="prefetch" href="/assets/js/109.98a9c733.js"><link rel="prefetch" href="/assets/js/11.4f1a38c2.js"><link rel="prefetch" href="/assets/js/110.cb2819bf.js"><link rel="prefetch" href="/assets/js/111.3763e438.js"><link rel="prefetch" href="/assets/js/112.437502fc.js"><link rel="prefetch" href="/assets/js/113.c84b80e9.js"><link rel="prefetch" href="/assets/js/114.e8265ab7.js"><link rel="prefetch" href="/assets/js/115.5950f39b.js"><link rel="prefetch" href="/assets/js/116.7082589d.js"><link rel="prefetch" href="/assets/js/117.9ab33002.js"><link rel="prefetch" href="/assets/js/118.b03051ef.js"><link rel="prefetch" href="/assets/js/119.31fe4216.js"><link rel="prefetch" href="/assets/js/12.397d3f87.js"><link rel="prefetch" href="/assets/js/120.4d52fd08.js"><link rel="prefetch" href="/assets/js/121.024a68dc.js"><link rel="prefetch" href="/assets/js/122.75cd9e9a.js"><link rel="prefetch" href="/assets/js/123.3060f162.js"><link rel="prefetch" href="/assets/js/124.b65e3f9b.js"><link rel="prefetch" href="/assets/js/125.87d06856.js"><link rel="prefetch" href="/assets/js/126.23d0d6ec.js"><link rel="prefetch" href="/assets/js/127.1ff7063e.js"><link rel="prefetch" href="/assets/js/128.e7a78683.js"><link rel="prefetch" href="/assets/js/129.3a378a54.js"><link rel="prefetch" href="/assets/js/13.d1346059.js"><link rel="prefetch" href="/assets/js/130.3820ccc0.js"><link rel="prefetch" href="/assets/js/14.961feb61.js"><link rel="prefetch" href="/assets/js/15.61355499.js"><link rel="prefetch" href="/assets/js/16.6759c278.js"><link rel="prefetch" href="/assets/js/17.39315298.js"><link rel="prefetch" href="/assets/js/18.9995ddc3.js"><link rel="prefetch" href="/assets/js/19.e7007f1f.js"><link rel="prefetch" href="/assets/js/20.8284a0ff.js"><link rel="prefetch" href="/assets/js/21.42efcf40.js"><link rel="prefetch" href="/assets/js/22.ce83188a.js"><link rel="prefetch" href="/assets/js/23.125b374b.js"><link rel="prefetch" href="/assets/js/24.9a24b2f6.js"><link rel="prefetch" href="/assets/js/25.61d7e926.js"><link rel="prefetch" href="/assets/js/26.4c271fce.js"><link rel="prefetch" href="/assets/js/27.08314644.js"><link rel="prefetch" href="/assets/js/28.44a30857.js"><link rel="prefetch" href="/assets/js/29.4b86327a.js"><link rel="prefetch" href="/assets/js/30.284e1438.js"><link rel="prefetch" href="/assets/js/31.c7fb218e.js"><link rel="prefetch" href="/assets/js/32.9591edea.js"><link rel="prefetch" href="/assets/js/33.52d0ee09.js"><link rel="prefetch" href="/assets/js/34.24dce9bc.js"><link rel="prefetch" href="/assets/js/35.e9e59a19.js"><link rel="prefetch" href="/assets/js/36.470d3b70.js"><link rel="prefetch" href="/assets/js/37.f43d4d57.js"><link rel="prefetch" href="/assets/js/38.bb14e7a9.js"><link rel="prefetch" href="/assets/js/39.4238fcd3.js"><link rel="prefetch" href="/assets/js/4.10111819.js"><link rel="prefetch" href="/assets/js/40.eb5830d8.js"><link rel="prefetch" href="/assets/js/41.f2de0dd7.js"><link rel="prefetch" href="/assets/js/42.ee6bc670.js"><link rel="prefetch" href="/assets/js/43.aeb80fc2.js"><link rel="prefetch" href="/assets/js/44.3dcf73d7.js"><link rel="prefetch" href="/assets/js/45.f60dd2b7.js"><link rel="prefetch" href="/assets/js/46.3ffd9a49.js"><link rel="prefetch" href="/assets/js/47.0629cfd8.js"><link rel="prefetch" href="/assets/js/48.4064d363.js"><link rel="prefetch" href="/assets/js/49.e5cd2868.js"><link rel="prefetch" href="/assets/js/5.bbaa5544.js"><link rel="prefetch" href="/assets/js/50.e1524d44.js"><link rel="prefetch" href="/assets/js/51.ef5d60b4.js"><link rel="prefetch" href="/assets/js/52.9e15bbc1.js"><link rel="prefetch" href="/assets/js/53.9e53a9b3.js"><link rel="prefetch" href="/assets/js/54.bda58726.js"><link rel="prefetch" href="/assets/js/55.cdc29215.js"><link rel="prefetch" href="/assets/js/56.3f0607d3.js"><link rel="prefetch" href="/assets/js/57.b45ba0fb.js"><link rel="prefetch" href="/assets/js/58.12450427.js"><link rel="prefetch" href="/assets/js/59.33096dcc.js"><link rel="prefetch" href="/assets/js/6.8df5fb44.js"><link rel="prefetch" href="/assets/js/60.98645e3a.js"><link rel="prefetch" href="/assets/js/61.413d9151.js"><link rel="prefetch" href="/assets/js/62.cc3b9f5a.js"><link rel="prefetch" href="/assets/js/63.05784f29.js"><link rel="prefetch" href="/assets/js/64.d6d2548e.js"><link rel="prefetch" href="/assets/js/65.dfa3ba68.js"><link rel="prefetch" href="/assets/js/66.bb4f5fde.js"><link rel="prefetch" href="/assets/js/67.2c282a4f.js"><link rel="prefetch" href="/assets/js/68.ce435a87.js"><link rel="prefetch" href="/assets/js/69.e439f6e2.js"><link rel="prefetch" href="/assets/js/7.751d2655.js"><link rel="prefetch" href="/assets/js/70.270cc6b6.js"><link rel="prefetch" href="/assets/js/71.ad1e4a0b.js"><link rel="prefetch" href="/assets/js/72.0adf2b53.js"><link rel="prefetch" href="/assets/js/73.72e019b5.js"><link rel="prefetch" href="/assets/js/74.a4eb5a17.js"><link rel="prefetch" href="/assets/js/75.6412ff6f.js"><link rel="prefetch" href="/assets/js/76.7f462fc1.js"><link rel="prefetch" href="/assets/js/77.16502231.js"><link rel="prefetch" href="/assets/js/78.3082b00c.js"><link rel="prefetch" href="/assets/js/79.4f375500.js"><link rel="prefetch" href="/assets/js/8.6c3fab20.js"><link rel="prefetch" href="/assets/js/80.0f2472d6.js"><link rel="prefetch" href="/assets/js/81.136b6c89.js"><link rel="prefetch" href="/assets/js/82.6f5b7de7.js"><link rel="prefetch" href="/assets/js/83.0eb8579b.js"><link rel="prefetch" href="/assets/js/84.b50a036d.js"><link rel="prefetch" href="/assets/js/85.e7b43c1a.js"><link rel="prefetch" href="/assets/js/86.0cbd7e7b.js"><link rel="prefetch" href="/assets/js/87.647fd8a9.js"><link rel="prefetch" href="/assets/js/88.be268039.js"><link rel="prefetch" href="/assets/js/89.2c0b397f.js"><link rel="prefetch" href="/assets/js/9.ace3bd0d.js"><link rel="prefetch" href="/assets/js/90.fb93a187.js"><link rel="prefetch" href="/assets/js/92.4e47d015.js"><link rel="prefetch" href="/assets/js/93.2f9bae72.js"><link rel="prefetch" href="/assets/js/94.c68d9319.js"><link rel="prefetch" href="/assets/js/95.a6932cad.js"><link rel="prefetch" href="/assets/js/96.dea31892.js"><link rel="prefetch" href="/assets/js/97.e8c73484.js"><link rel="prefetch" href="/assets/js/98.bf38dbf7.js"><link rel="prefetch" href="/assets/js/99.edd450af.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f7444686.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-6f8f7dda><div data-v-6f8f7dda><div class="password-shadow password-wrapper-out" style="display:none;" data-v-f68096de data-v-6f8f7dda data-v-6f8f7dda><h3 class="title" data-v-f68096de>江流</h3> <p class="description" data-v-f68096de>我的知识存储空间，不大不小刚刚好！</p> <label id="box" class="inputBox" data-v-f68096de><input type="password" value="" data-v-f68096de> <span data-v-f68096de>Konck! Knock!</span> <button data-v-f68096de>OK</button></label> <div class="footer" data-v-f68096de><span data-v-f68096de><i class="iconfont reco-theme" data-v-f68096de></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-f68096de>vuePress-theme-reco</a></span> <span data-v-f68096de><i class="iconfont reco-copyright" data-v-f68096de></i> <a data-v-f68096de><span data-v-f68096de>江流</span>
+          
+        <span data-v-f68096de>2018 - </span>
+        2023
+      </a></span></div></div> <div class="hide" data-v-6f8f7dda><header class="navbar" data-v-6f8f7dda><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="江流" class="logo"> <span class="site-name">江流</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/复盘/" class="nav-link"><i class="undefined"></i>
+  复盘
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习总结/" class="nav-link"><i class="undefined"></i>
+  学习总结
+</a></li><li class="dropdown-item"><!----> <a href="/categories/踩坑/" class="nav-link"><i class="undefined"></i>
+  踩坑
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/" class="nav-link"><i class="undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java基础/" class="nav-link"><i class="undefined"></i>
+  Java基础
+</a></li><li class="dropdown-item"><!----> <a href="/categories/高并发编程/" class="nav-link"><i class="undefined"></i>
+  高并发编程
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java框架/" class="nav-link"><i class="undefined"></i>
+  Java框架
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习笔记/" class="nav-link"><i class="undefined"></i>
+  学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/框架学习/" class="nav-link"><i class="undefined"></i>
+  框架学习
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java项目/" class="nav-link"><i class="undefined"></i>
+  Java项目
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-note"></i>
+      学习笔记
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/major-notes/java/" class="nav-link"><i class="undefined"></i>
+  Java笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/juc/" class="nav-link"><i class="undefined"></i>
+  JUC学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/jvm.html" class="nav-link"><i class="undefined"></i>
+  JVM核心知识
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/vue.html" class="nav-link"><i class="undefined"></i>
+  Vue入门笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/linux/" class="nav-link"><i class="undefined"></i>
+  Linux笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/redis/" class="nav-link router-link-active"><i class="undefined"></i>
+  Redis学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/springcloud/" class="nav-link"><i class="undefined"></i>
+  SpringCloud笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/spring/" class="nav-link"><i class="undefined"></i>
+  Spring学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/shiro.html" class="nav-link"><i class="undefined"></i>
+  Shiro学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/android-notes/" class="nav-link"><i class="undefined"></i>
+  Android学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/project-notes/" class="nav-link"><i class="undefined"></i>
+  项目笔记
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/collections/" class="nav-link"><i class="iconfont reco-collection"></i>
+  收藏夹
+</a></div><div class="nav-item"><a href="/docs/life-logs/" class="nav-link"><i class="iconfont reco-camera"></i>
+  生活日志
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-browse"></i>
+      常用网站
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://www.cxysite.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  程序员导航
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-person"></i>
+      私藏博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://docker.easydoc.net" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  快速入门docker
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系方式
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-gitee"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-6f8f7dda></div> <aside class="sidebar" data-v-6f8f7dda><div class="personal-info-wrapper" data-v-cc06b9e8 data-v-6f8f7dda><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-cc06b9e8> <h3 class="name" data-v-cc06b9e8>
+    江流
+  </h3> <div class="num" data-v-cc06b9e8><div data-v-cc06b9e8><h3 data-v-cc06b9e8>104</h3> <h6 data-v-cc06b9e8>Articles</h6></div> <div data-v-cc06b9e8><h3 data-v-cc06b9e8>21</h3> <h6 data-v-cc06b9e8>Tags</h6></div></div> <ul class="social-links" data-v-cc06b9e8></ul> <hr data-v-cc06b9e8></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/复盘/" class="nav-link"><i class="undefined"></i>
+  复盘
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习总结/" class="nav-link"><i class="undefined"></i>
+  学习总结
+</a></li><li class="dropdown-item"><!----> <a href="/categories/踩坑/" class="nav-link"><i class="undefined"></i>
+  踩坑
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/" class="nav-link"><i class="undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Linux/" class="nav-link"><i class="undefined"></i>
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/categories/算法/" class="nav-link"><i class="undefined"></i>
+  算法
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java基础/" class="nav-link"><i class="undefined"></i>
+  Java基础
+</a></li><li class="dropdown-item"><!----> <a href="/categories/高并发编程/" class="nav-link"><i class="undefined"></i>
+  高并发编程
+</a></li><li class="dropdown-item"><!----> <a href="/categories/数据库/" class="nav-link"><i class="undefined"></i>
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java框架/" class="nav-link"><i class="undefined"></i>
+  Java框架
+</a></li><li class="dropdown-item"><!----> <a href="/categories/学习笔记/" class="nav-link"><i class="undefined"></i>
+  学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/categories/框架学习/" class="nav-link"><i class="undefined"></i>
+  框架学习
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Java项目/" class="nav-link"><i class="undefined"></i>
+  Java项目
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-note"></i>
+      学习笔记
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/major-notes/java/" class="nav-link"><i class="undefined"></i>
+  Java笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/juc/" class="nav-link"><i class="undefined"></i>
+  JUC学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/jvm.html" class="nav-link"><i class="undefined"></i>
+  JVM核心知识
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/vue.html" class="nav-link"><i class="undefined"></i>
+  Vue入门笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/linux/" class="nav-link"><i class="undefined"></i>
+  Linux笔记整理
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/redis/" class="nav-link router-link-active"><i class="undefined"></i>
+  Redis学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/springcloud/" class="nav-link"><i class="undefined"></i>
+  SpringCloud笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/major-notes/spring/" class="nav-link"><i class="undefined"></i>
+  Spring学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/more-notes/shiro.html" class="nav-link"><i class="undefined"></i>
+  Shiro学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/android-notes/" class="nav-link"><i class="undefined"></i>
+  Android学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/docs/project-notes/" class="nav-link"><i class="undefined"></i>
+  项目笔记
+</a></li></ul></div></div><div class="nav-item"><a href="/docs/collections/" class="nav-link"><i class="iconfont reco-collection"></i>
+  收藏夹
+</a></div><div class="nav-item"><a href="/docs/life-logs/" class="nav-link"><i class="iconfont reco-camera"></i>
+  生活日志
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-browse"></i>
+      常用网站
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="http://www.cxysite.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  程序员导航
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-person"></i>
+      私藏博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://docker.easydoc.net" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  快速入门docker
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  牛客网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://leetcode-cn.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  力扣
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系方式
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://gitee.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-gitee"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Algorithm</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Juc</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Redis</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/major-notes/redis/01-nosq.html" class="sidebar-link">NoSQL</a></li><li><a href="/docs/major-notes/redis/02-redis-brief.html" class="sidebar-link">Redis入门概述</a></li><li><a href="/docs/major-notes/redis/03-data-type.html" class="sidebar-link">Redis的数据类型</a></li><li><a href="/docs/major-notes/redis/04-persistence.html" class="sidebar-link">Redis概述</a></li><li><a href="/docs/major-notes/redis/05-transaction.html" aria-current="page" class="active sidebar-link">Redis事务</a></li><li><a href="/docs/major-notes/redis/06-publish-subscribe.html" class="sidebar-link">Redis的发布和订阅</a></li><li><a href="/docs/major-notes/redis/07-redis-copy.html" class="sidebar-link">Redis的复制</a></li><li><a href="/docs/major-notes/redis/redis-Install.html" class="sidebar-link">Redis的安装教程</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SpringBoot</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Springcloud</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-f68096de data-v-6f8f7dda><h3 class="title" data-v-f68096de>Redis事务</h3> <!----> <label id="box" class="inputBox" data-v-f68096de><input type="password" value="" data-v-f68096de> <span data-v-f68096de>Konck! Knock!</span> <button data-v-f68096de>OK</button></label> <div class="footer" data-v-f68096de><span data-v-f68096de><i class="iconfont reco-theme" data-v-f68096de></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-f68096de>vuePress-theme-reco</a></span> <span data-v-f68096de><i class="iconfont reco-copyright" data-v-f68096de></i> <a data-v-f68096de><span data-v-f68096de>江流</span>
+          
+        <span data-v-f68096de>2018 - </span>
+        2023
+      </a></span></div></div> <div data-v-6f8f7dda><div data-v-6f8f7dda><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">Redis事务</h1> <div data-v-1e62957f><i class="iconfont reco-account" data-v-1e62957f><span data-v-1e62957f>江流</span></i> <!----> <!----> <i class="tags iconfont reco-tag" data-v-1e62957f><span class="tag-item" data-v-1e62957f>Redis</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="what"><a href="#what" class="header-anchor">#</a> WHAT</h2> <p>Redis 事务允许一次性执行多个命令，其本质上是 一组命令的集合。一个事务中的所有命令都会序列化，<strong>按顺序地串行执行而不会被其他命令插入，不允许加塞。</strong></p> <h3 id="官网介绍"><a href="#官网介绍" class="header-anchor">#</a> 官网介绍</h3> <p><img src="http://images.xbnote.top/images/20211127102900.png" alt="image-20211127102859979"></p> <h2 id="can"><a href="#can" class="header-anchor">#</a> CAN</h2> <p>一个队列中，一次性、顺序性、排他性地执行一系列命令</p> <h2 id="how"><a href="#how" class="header-anchor">#</a> HOW</h2> <h3 id="常用命令"><a href="#常用命令" class="header-anchor">#</a> 常用命令</h3> <ul><li>DISCARED ：取消事务，放弃执行事务块内所有命令</li> <li>EXEC ： 执行所有事务块内的命令</li> <li>MULTI ： 标记一个事务块的开始</li> <li>UNWATCH ： 取消 WATCH 命令对所有 KEY 的监视</li> <li>WATCH key [key] ： 监视一个（或多个）key，如果在事务执行之前这个（或这些）key 被其他命令所改动，那么事务将被打断。</li></ul> <h3 id="执行策略"><a href="#执行策略" class="header-anchor">#</a> 执行策略</h3> <ul><li><strong>正常执行</strong></li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#清空数据库</span>
+flushdb
+<span class="token comment">#标记事务开始</span>
+MULTI
+<span class="token comment">#设置id值为12</span>
+<span class="token builtin class-name">set</span> <span class="token function">id</span> <span class="token number">12</span>
+<span class="token comment">#获取id的值</span>
+get <span class="token function">id</span>
+<span class="token comment">#对k1的值进行加1操作</span>
+incr k1
+<span class="token comment">#对k1的值进行加1操作</span>
+incr k1
+<span class="token comment">#获取k1的值</span>
+get k1
+<span class="token comment">#执行事务内所有命令</span>
+EXEC
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><img src="C:/Users/20689/AppData/Roaming/Typora/typora-user-images/image-20211126110541082.png" alt="image-20211126110541082"></p> <ul><li><strong>放弃事务</strong></li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>MULTI
+<span class="token comment">#设置name值为xiaobai</span>
+<span class="token builtin class-name">set</span> name xiaobai
+<span class="token comment">#设置age值为18</span>
+<span class="token builtin class-name">set</span> age <span class="token number">18</span>
+<span class="token comment">#对k1的值进行加1操作</span>
+incr k1
+<span class="token comment">#放弃执行事务块的所有命名</span>
+discard
+<span class="token comment">#查看所有键值</span>
+keys *
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126111445.png" alt="image-20211126111444560"></p> <ul><li><strong>全体连坐</strong></li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#查看所有键值</span>
+MULTL
+<span class="token comment">#设置name值为xiaobai</span>
+<span class="token builtin class-name">set</span> name xiaobai
+<span class="token comment">#查看name的值</span>
+get name 
+<span class="token comment">#对k1的值进行加1操作</span>
+incr k1
+<span class="token comment">#查看k1的值</span>
+get k1
+<span class="token comment">#设置email值，故意不传参</span>
+<span class="token builtin class-name">set</span> email 
+<span class="token comment">#执行事务块中所有命令</span>
+<span class="token builtin class-name">exec</span>
+<span class="token comment">#查看所有键值</span>
+keys *
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126112209.png" alt="image-20211126112208784"></p> <ul><li><strong>冤头债主</strong></li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#查看所有键值</span>
+MULTL
+<span class="token comment">#设置name值为xiaobai</span>
+<span class="token builtin class-name">set</span> name xiaobai
+<span class="token comment">#设置age值为18</span>
+<span class="token builtin class-name">set</span> age <span class="token number">18</span>
+<span class="token comment">#设置email值为xiaobai@qq.com</span>
+<span class="token builtin class-name">set</span> email xiaobai@qq.com
+<span class="token comment">#故意对email的值进行加1操作</span>
+incr k1
+<span class="token comment">#查看age的值</span>
+get age
+<span class="token comment">#执行事务块中所有命令</span>
+<span class="token builtin class-name">exec</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126114033.png" alt="image-20211126114033253"></p> <ul><li><strong>WATCH 监控</strong></li></ul> <blockquote><p><strong>悲观锁、乐观锁、CAS</strong></p> <p>悲观锁：每次拿数据时都认为别人会修改，所以每次拿数据时都上锁。传统关系型数据库中的行锁、表锁，读锁、写锁都是在做操作之前先上锁</p> <p>乐观锁：每次拿数据时都认为别人不会修改，所以不会上锁，但在更新时会判一下在此期间别人有没有更新这个数据，可以使用版本号等机制。乐观锁适用于多读应用，以提高吞吐量。</p></blockquote> <p><strong>案例</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">##初始化信用卡可用余额和欠额</span>
+<span class="token builtin class-name">set</span> balance <span class="token number">100</span>
+<span class="token builtin class-name">set</span> debt <span class="token number">0</span>
+multi
+decrby balance <span class="token number">30</span>
+incrby debt <span class="token number">30</span>
+<span class="token builtin class-name">exec</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126115340.png" alt="image-20211126115340578"></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">##无加塞篡改，先监控在开启multi，保证两笔金额变动在同一事务内</span>
+<span class="token function">watch</span> balance
+multi
+decrby balance <span class="token number">10</span>
+incrby debt <span class="token number">10</span>
+<span class="token builtin class-name">exec</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126115955.png" alt="image-20211126115955296"></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">##有加塞篡改，监控key，如果key被修改了，后面的一个事务的执行失效</span>
+WATCH balance
+<span class="token builtin class-name">set</span> balance 
+multi
+decrby balance <span class="token number">15</span>
+incrby debt <span class="token number">15</span>
+exexc
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126120613.png" alt="image-20211126120613053"></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#unwatch,一旦执行了exec之前加的监控锁都会被取消</span>
+<span class="token function">watch</span> balance
+<span class="token builtin class-name">set</span> balance <span class="token number">300</span>
+<span class="token builtin class-name">set</span> balance <span class="token number">350</span>
+unwatch
+multi
+<span class="token builtin class-name">set</span> balance <span class="token number">100</span>
+<span class="token builtin class-name">set</span> debt <span class="token number">0</span>
+<span class="token builtin class-name">exec</span>
+get balance
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><img src="http://images.xbnote.top/images/20211126123116.png" alt="image-20211126123115828"></p> <h3 id="_3-阶段"><a href="#_3-阶段" class="header-anchor">#</a> 3 阶段</h3> <p>开启：以 MULTI 开始一个事务</p> <p>入队：将多个命令入队到事务中，接到这些命令并不会立即执行，而是放到等待执行的队列里边</p> <p>执行：有 EXEC 命令触发事务</p> <h3 id="_3-特性"><a href="#_3-特性" class="header-anchor">#</a> 3 特性</h3> <ul><li>单独的隔离操作：事务中的所有命令都会序列化，按顺序地执行。事务在执行过程中，不会被其他客户端发送来的命令请求所打断。</li> <li>没有隔离级别的概念：队列中的命令没有提交之前都不会实际的被执行，因为事务提交之前任务指令多不会被实际执行，也就不存在”事务内的查询要看到事务里的更新，在事务外查询不能看到“这个让人万分头疼的问题。</li> <li>不保证原子性：Redis 同一个事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚。</li></ul></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最近更新时间: </span> <span class="time">5/6/2023, 6:41:13 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/docs/major-notes/redis/04-persistence.html" class="prev">
+          Redis概述
+        </a></span> <span class="next"><a href="/docs/major-notes/redis/06-publish-subscribe.html">
+          Redis的发布和订阅
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-6986a797 data-v-6f8f7dda><li class="level-2" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#what" class="sidebar-link reco-side-what" data-v-6986a797>WHAT</a></li><li class="level-3" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#官网介绍" class="sidebar-link reco-side-官网介绍" data-v-6986a797>官网介绍</a></li><li class="level-2" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#can" class="sidebar-link reco-side-can" data-v-6986a797>CAN</a></li><li class="level-2" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#how" class="sidebar-link reco-side-how" data-v-6986a797>HOW</a></li><li class="level-3" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#常用命令" class="sidebar-link reco-side-常用命令" data-v-6986a797>常用命令</a></li><li class="level-3" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#执行策略" class="sidebar-link reco-side-执行策略" data-v-6986a797>执行策略</a></li><li class="level-3" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#_3-阶段" class="sidebar-link reco-side-_3-阶段" data-v-6986a797>3 阶段</a></li><li class="level-3" data-v-6986a797><a href="/docs/major-notes/redis/05-transaction.html#_3-特性" class="sidebar-link reco-side-_3-特性" data-v-6986a797>3 特性</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/assets/js/app.371ed010.js" defer></script><script src="/assets/js/3.fe7e7b6d.js" defer></script><script src="/assets/js/1.adb5634c.js" defer></script><script src="/assets/js/91.45160178.js" defer></script>
+  </body>
+</html>
